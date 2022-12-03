@@ -34,12 +34,18 @@ const updateUser = async (req, res, next) => {
 };
 
 const deleteUser = async (req, res, next) => {
-    const { id } = req.params;
+  const { id } = req.params;
 
-    await userSchema
-      .remove({ _id: id })
-      .then((data) => res.json(data))
-      .catch((error) => res.json({ message: error }));
-  };
+  await userSchema
+    .remove({ _id: id })
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+};
 
-module.exports = { userRegister, getAllUsers, getUserById, updateUser, deleteUser };
+module.exports = {
+  userRegister,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
+};

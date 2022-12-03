@@ -3,10 +3,17 @@ const {
   getAllUsers,
   getUserById,
   updateUser,
-  deleteUser
+  deleteUser,
 } = require("./users.controller");
-
-const {userLogin} = require('./auth.controller.js')
+const { userLogin } = require("./auth.controller.js");
+const {
+  seedAllCharacters,
+  heroNameStartsWith,
+  getHeroById,
+  getAllHeroesDataBase,
+  updateHero,
+  deleteHero
+} = require("./heroes.controller");
 
 module.exports = {
   userRegister,
@@ -14,5 +21,11 @@ module.exports = {
   getUserById,
   updateUser,
   deleteUser,
-  userLogin
+  userLogin,
+  seedAllCharacters,
+  heroNameStartsWith,
+  getHeroById,
+  getAllHeroesDataBase,
+  updateHero,
+  deleteHero
 };
