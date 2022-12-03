@@ -3,8 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const handleError = require("./middlewares/error.middleware");
 const mongoose = require("mongoose");
-const { userRoutes } = require("./routes");
-require('dotenv').config();
+const { userRoutes, authRoutes } = require("./routes/index");
+require("dotenv").config();
 
 const app = express();
 
@@ -26,7 +26,8 @@ app.get("/", (req, res) => {
   console.log("Welcome to server 'HeroesApp'");
 });
 
-app.use('/api/v1', userRoutes);
+app.use("/api/v1", userRoutes);
+app.use("/api/v1", authRoutes);
 
 app.use(handleError);
 
