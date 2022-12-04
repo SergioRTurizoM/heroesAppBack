@@ -41,6 +41,24 @@ const seedAllCharacters = async (req, res) => {
   }
 };
 
+const insertHero = async( req, res)=> {
+  const body = req.body;
+  const {idApi, name, description, image, appears } = body
+  let heroNew = {
+    idApi,
+    name,
+    description,
+    image,
+    appears,
+  };
+  const personaje = await heroSchema(heroNew);
+  personaje
+    .save()
+    .then((data) => res.json(data))
+    .catch((error) => res.json({ message: error }));
+
+}
+
 const heroNameStartsWith = async (req, res) => {
   const { name } = req.params;
   console.log("Este es el log de name", name);
@@ -109,5 +127,6 @@ module.exports = {
   getAllHeroesDataBase,
   getHeroById,
   updateHero,
-  deleteHero
+  deleteHero,
+  insertHero
 };

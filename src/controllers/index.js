@@ -12,7 +12,8 @@ const {
   getHeroById,
   getAllHeroesDataBase,
   updateHero,
-  deleteHero
+  deleteHero,
+  insertHero
 } = require("./heroes.controller");
 
 module.exports = {
@@ -27,5 +28,6 @@ module.exports = {
   getHeroById,
   getAllHeroesDataBase,
   updateHero,
-  deleteHero
+  deleteHero,
+  insertHero
 };
