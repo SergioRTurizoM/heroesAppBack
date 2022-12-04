@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 
 const authenticate = (req, res, next) => {
-
   const bearerToken = req.headers.authorization;
   if (bearerToken) {
     const token = bearerToken.split("Bearer ")[1];
@@ -18,7 +17,7 @@ const authenticate = (req, res, next) => {
       });
     }
   } else {
-    res.status(400).json({message: "No token provided"})
+    res.status(400).json({ message: "No token provided" });
   }
 };
 

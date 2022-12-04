@@ -1,10 +1,21 @@
 const userSchema = require("../models/users.model");
+const welcomeTemplate = require('../templates/welcome')
+const transporter = require("../utils/mailer");
 
 const userRegister = async (req, res, next) => {
   const user = await userSchema(req.body);
   user
     .save()
-    .then((data) => res.json(data))
+    .then((data) => {
+      transporter.sendMail({
+        from: "<tsergior@gmail.com>",
+        to: data.email,
+        subject: "Bienvenid@ a mi Api de Héroes Marvel",
+        text: `Hola ${data.username} te doy la bienvenido a mi api de héroes Marvel ✌️`,
+        html: welcomeTemplate(data.username),
+      });
+      res.send(data)
+    })
     .catch((error) => res.json({ message: error }));
 };
 

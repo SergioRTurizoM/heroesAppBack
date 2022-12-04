@@ -23,7 +23,6 @@ mongoose
 
 app.get("/", (req, res) => {
   res.send("Welcome to HeroesApp api");
-  console.log("Welcome to server 'HeroesApp'");
 });
 
 app.use("/api/v1", userRoutes);
