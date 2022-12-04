@@ -27,6 +27,24 @@ router.post("/users", userRegister);
  *        password:
  *          type: string
  *          example: abc123
+ *    Hero:
+ *       type: object
+ *       properties:
+ *         idApi:
+ *           type: string
+ *           example: string
+ *         name:
+ *           type: string
+ *           example: string
+ *         description:
+ *           type: string
+ *           example: string
+ *         image:
+ *           type: string
+ *           example: string
+ *         appears:
+ *           type: array
+ *           example: [array]
  *  securitySchemes:
  *     bearerAuth:
  *        type: http
@@ -303,6 +321,29 @@ router.delete("/users/:id", deleteUser);
  *          description: "Verify credentials for login"
  */
 
+
+/**
+ * @openapi
+ * /api/v1/characters/database:
+ *   post:
+ *     summary: Add a new hero into the database
+ *     tags: [Heros]
+ *     requestBody:
+ *       description: To add a new hero.
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             $ref: '#/components/schemas/Hero'
+ *     security:
+ *        - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: created
+ *       400:
+ *         description: error, please verify
+ */
 
 
 
