@@ -7,6 +7,7 @@ const {
 } = require("./users.controller");
 const { userLogin } = require("./auth.controller.js");
 const {
+  getAllCharactersFromAPI,
   seedAllCharacters,
   heroNameStartsWith,
   getHeroById,
@@ -23,6 +24,7 @@ module.exports = {
   updateUser,
   deleteUser,
   userLogin,
+  getAllCharactersFromAPI,
   seedAllCharacters,
   heroNameStartsWith,
   getHeroById,

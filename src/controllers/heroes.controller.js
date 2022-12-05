@@ -9,9 +9,23 @@ let credentials = {
 
 const marvel = api.createClient(credentials);
 
+const getAllCharactersFromAPI = async (req, res) => {
+  try {
+    await marvel.characters.findAll(100,(err, result) => {
+      if (err) {
+        throw err;
+      } else {
+        res.send(result);
+      }
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 const seedAllCharacters = async (req, res) => {
   try {
-    await marvel.characters.findAll(50, (err, result) => {
+    await marvel.characters.findAll(100, (err, result) => {
       if (err) {
         throw err;
       } else {
@@ -41,9 +55,9 @@ const seedAllCharacters = async (req, res) => {
   }
 };
 
-const insertHero = async( req, res)=> {
+const insertHero = async (req, res) => {
   const body = req.body;
-  const {idApi, name, description, image, appears } = body
+  const { idApi, name, description, image, appears } = body;
   let heroNew = {
     idApi,
     name,
@@ -56,10 +70,9 @@ const insertHero = async( req, res)=> {
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
+};
 
-}
-
-const heroNameStartsWith = async (req, res) => {
+/* const heroNameStartsWith = async (req, res) => {
   const { name } = req.params;
   console.log("Este es el log de name", name);
   try {
@@ -79,6 +92,24 @@ const heroNameStartsWith = async (req, res) => {
         });
 
         res.json(newListHero);
+      })
+      .fail((error) => res.json(error))
+      .done();
+  } catch (error) {
+    throw error;
+  }
+}; */
+
+const heroNameStartsWith = async (req, res) => {
+  const { name } = req.params;
+  console.log("Este es el log de name", name);
+  try {
+    await marvel.characters
+      .findNameStartsWith(name)
+      .then((data) => {
+    
+
+        res.json(data.data);
       })
       .fail((error) => res.json(error))
       .done();
@@ -122,11 +153,12 @@ const deleteHero = async (req, res) => {
 };
 
 module.exports = {
+  getAllCharactersFromAPI,
   seedAllCharacters,
   heroNameStartsWith,
   getAllHeroesDataBase,
   getHeroById,
   updateHero,
   deleteHero,
-  insertHero
+  insertHero,
 };

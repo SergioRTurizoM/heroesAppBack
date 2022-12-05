@@ -27,7 +27,7 @@ router.post("/users", userRegister);
  *        password:
  *          type: string
  *          example: abc123
- *    Hero:
+ *    Heroes:
  *       type: object
  *       properties:
  *         idApi:
@@ -267,7 +267,7 @@ router.delete("/users/:id", deleteUser);
  * @openapi
  * components:
  *  schemas:
- *    Heros:
+ *    Heroes:
  *      type: object
  *      properties:
  *        email:
@@ -278,12 +278,31 @@ router.delete("/users/:id", deleteUser);
  *          example: abc123
  */
 
+
+/**
+ * @openapi
+ * /api/v1/characters/marvel:
+ *  get:
+ *    summary: Get all Heroes from Marvel Heroes. You will need to be authenticated.
+ *    tags: [Heroes]
+ *    responses:
+ *      200:
+ *        description: These are all heroes from API Marvel
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ */
+
+
+
 /**
  * @openapi
  * /api/v1/characters/database/seed:
  *   get:
  *     summary: Get heroes form API MARVEL and inserte them in MongoDB daabase
- *     tags: [Heros]
+ *     tags: [Heroes]
  *     security:
  *        - bearerAuth: []
  *     responses:
@@ -327,7 +346,7 @@ router.delete("/users/:id", deleteUser);
  * /api/v1/characters/database:
  *   post:
  *     summary: Add a new hero into the database
- *     tags: [Heros]
+ *     tags: [Heroes]
  *     requestBody:
  *       description: To add a new hero.
  *       required: true
@@ -345,6 +364,26 @@ router.delete("/users/:id", deleteUser);
  *         description: error, please verify
  */
 
+
+/**
+ * @openapi
+ * /api/v1/characters/database/{id}:
+ *  delete:
+ *    summary: Delete one hero.
+ *    tags: [Heroes]
+ *    parameters:
+ *       - in: path
+ *         name: id
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: It is the hero id
+ *    responses:
+ *      200:
+ *        description: Hero selected was deleted
+ *      404:
+ *        description: Hero not found, please verify
+ */
 
 
 module.exports = router;

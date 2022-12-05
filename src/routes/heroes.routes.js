@@ -1,7 +1,8 @@
 const { Router } = require("express");
 const router = Router();
-const {seedAllCharacters, heroNameStartsWith, getHeroById, getAllHeroesDataBase, updateHero, deleteHero, insertHero} = require('../controllers')
+const {getAllCharactersFromAPI,seedAllCharacters, heroNameStartsWith, getHeroById, getAllHeroesDataBase, updateHero, deleteHero, insertHero} = require('../controllers')
 
+router.get('/characters/marvel', getAllCharactersFromAPI)
 router.get('/characters/database/seed', seedAllCharacters)
 router.post('/characters/database', insertHero)
 router.get('/characters/database/:name', heroNameStartsWith)
